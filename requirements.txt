@@ -1,4 +1,4 @@
 beautifulsoup4==4.12.3
-requests==2.32.3
+requests==2.33.0
 lxml==4.9.2
 playwright==1.45.0

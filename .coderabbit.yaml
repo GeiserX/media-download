@@ -16,12 +16,8 @@ reviews:
       - "DO NOT REVIEW"
   path_filters:
     - "!dist/**"
-    - "!**/*.min.js"
-    - "!**/*.min.css"
-    - "!**/node_modules/**"
-    - "!**/.next/**"
-    - "!**/package-lock.json"
-    - "!**/pnpm-lock.yaml"
+    - "!**/__pycache__/**"
+    - "!**/*.pyc"
   tools:
     gitleaks:
       enabled: true
@@ -32,8 +28,6 @@ reviews:
     yamllint:
       enabled: true
     markdownlint:
-      enabled: true
-    eslint:
       enabled: true
     shellcheck:
       enabled: true

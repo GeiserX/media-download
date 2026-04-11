@@ -6,6 +6,10 @@
 
 <p align="center">Downloads all media files from any web page into a folder schema</p>
 
+<p align="center">
+  <a href="https://codecov.io/gh/GeiserX/media-download"><img src="https://img.shields.io/codecov/c/github/GeiserX/media-download?style=flat-square" alt="Coverage"></a>
+</p>
+
 ---
 
 ## Related Web Archiving Tools

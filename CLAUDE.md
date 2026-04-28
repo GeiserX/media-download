@@ -1,4 +1,4 @@
-# AGENTS.md — Media Download
+# CLAUDE.md — Media Download
 
 ## Project Overview
 

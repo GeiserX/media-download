@@ -14,7 +14,7 @@ Two Python scripts that mirror a publication catalog into a folder: `media-vtt.p
 
 ## Quick start
 
-Set the endpoints first (`grep -n place.holder src/*.py`); `publications-epub.py` also needs the catalog's `unit.db` at `UNIT_DB_PATH` (default `/app/db/unit.db`).
+Set the endpoints first (`grep -n place.holder src/*.py`); `publications-epub.py` also needs the catalog's `unit.db`, which the compose file mounts from `./db/unit.db`.
 
 ```bash
 git clone https://github.com/GeiserX/media-download.git && cd media-download

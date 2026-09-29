@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile-epubs
     volumes:
       - ./epubs:/epubs:rw
+      - ./db:/app/db:ro   # the catalog's unit.db
     environment:
       - LANG=S
       - OUTPUT_PATH=/epubs

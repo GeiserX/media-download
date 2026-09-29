@@ -1,7 +1,7 @@
 # CLAUDE.md — media-download
 
 ## Overview
-Downloads all media files (images, videos, subtitles) from any web page into an organized folder schema. Includes a secondary tool for downloading EPUB publications.
+Two scripts that mirror a publication catalog into a folder: `media-vtt.py` downloads the VTT subtitles of each media item, `publications-epub.py` downloads the EPUB of each publication. The catalog endpoints in the source are placeholders (`https://place.holder/...`).
 
 ## Tech Stack
 - Python

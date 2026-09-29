@@ -3,22 +3,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-epubs
-    #image: drumsergio/media-download:0.0.1
     volumes:
-      - E:\epubs:/epubs:rw
-    privileged: true
+      - ./epubs:/epubs:rw
+      - ./db:/app/db:ro   # the catalog's unit.db
     environment:
       - LANG=S
       - OUTPUT_PATH=/epubs
 
-  # media-download-media:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-media
-  #   #image: drumsergio/media-download:0.0.1
-  #   volumes:
-  #     - E:\vtts:/vtts:rw
-  #   privileged: true
-  #   environment:
-  #     - LANG=S
-  #     - OUTPUT_PATH=/vtts
+  media-download-media:
+    build:
+      context: .
+      dockerfile: Dockerfile-media
+    volumes:
+      - ./vtts:/vtts:rw
+    environment:
+      - LANG=S
+      - OUTPUT_PATH=/vtts

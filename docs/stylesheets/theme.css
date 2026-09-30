@@ -1,0 +1,140 @@
+/* docs/stylesheets/theme.css: the site takes its colours from the banner.
+ *
+ * banner.svg is a #ec4a26 orange plate with "media" in cream #fff4e6 and
+ * "download" plus the down arrow in dark brown #2b0f06. The header keeps the
+ * orange with dark brown text on it (4.75:1; cream on the orange is only
+ * 3.5:1). The dark page uses the brown ink, so the site reads as the banner.
+ * mkdocs.yml sets `primary: custom` and `accent: custom`, so Material paints
+ * nothing until these variables exist.
+ */
+:root {
+  --md-primary-fg-color: #ec4a26; /* banner background */
+  --md-primary-fg-color--light: #f26b4a;
+  --md-primary-fg-color--dark: #c7401d;
+  --md-primary-bg-color: #2b0f06; /* banner ink: header text and icons */
+  --md-primary-bg-color--light: #2b0f06b3;
+
+  --md-accent-fg-color: #ec4a26; /* banner background */
+  --md-accent-fg-color--transparent: #ec4a261a;
+}
+
+/* Dark scheme: the page body is the banner's brown ink, and Material's greys
+   take the banner's hue instead of the default blue. The orange lightened to
+   #f26b4a is 5.9:1 on the page and 5.4:1 on code blocks (the banner orange
+   itself is 4.3:1 on code blocks). */
+[data-md-color-scheme="slate"] {
+  --md-hue: 14;
+  --md-default-bg-color: #2b0f06;
+  --md-code-bg-color: #3a160b;
+  --md-typeset-a-color: #f26b4a;
+}
+
+/* Light scheme: #ec4a26 on white is 3.8:1, too faint for body links.
+   #c23a17 is the same hue at 5.4:1. */
+[data-md-color-scheme="default"] {
+  --md-typeset-a-color: #c23a17;
+}
+
+/* Fixed logo size so it does not crowd the site name. */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+/* The site name, set the way banner.svg sets the wordmark: heavy, tight,
+ * lowercase, in the brown ink.
+ *
+ * Only the first topic is styled. Material puts the site name in one
+ * .md-header__topic and the page title in a second one, and swaps them on
+ * scroll. Styling both would change every page title too. */
+.md-header__topic:first-child .md-ellipsis {
+  color: #2b0f06;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Keep the mark and the name close, so they read as one unit. */
+.md-header__button.md-logo {
+  padding-right: 0.2rem;
+}
+
+.md-header__title {
+  margin-left: 0.2rem;
+}
+
+/* Buttons.
+ *
+ * Material paints .md-button in --md-primary-fg-color, the header colour.
+ * Outline buttons take the link colour instead, so they match the links on
+ * both schemes. */
+.md-typeset .md-button {
+  color: var(--md-typeset-a-color);
+  border-color: var(--md-typeset-a-color);
+  border-radius: 0.5rem;
+}
+
+.md-typeset .md-button:focus,
+.md-typeset .md-button:hover {
+  background-color: var(--md-typeset-a-color);
+  border-color: var(--md-typeset-a-color);
+  color: #ffffff;
+}
+
+.md-typeset .md-button--primary,
+.md-typeset .md-button--primary:focus,
+.md-typeset .md-button--primary:hover {
+  /* White on #ec4a26 is 3.8:1. #c23a17 -> #a8321a keeps every point above
+     5.3:1. */
+  background: linear-gradient(90deg, #c23a17 0%, #a8321a 100%);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.md-typeset .md-button--primary:focus,
+.md-typeset .md-button--primary:hover {
+  box-shadow: 0 0.2rem 0.8rem #ec4a2659;
+}
+
+/* Grid cards: the border picks up the banner orange on hover, so the cards
+   match the buttons and links. */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border-radius: 0.5rem;
+}
+
+.md-typeset .grid.cards > ul > li:focus-within,
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:focus-within,
+.md-typeset .grid > .card:hover {
+  border-color: #ec4a26;
+}
+
+/* The home page keeps an H1 for search, screen readers and the browser tab.
+   The banner under it already shows the name, so the H1 is hidden visually.
+   Use it as: # media-download { .mdl-visually-hidden } */
+.md-typeset h1.mdl-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Environment variable names in tables, such as UNIT_DB_PATH, must not wrap
+   mid-word. Material sets word-break: break-word on code; normal keeps a
+   name whole but still lets a long line wrap at its spaces. */
+.md-typeset table:not([class]) code {
+  word-break: normal;
+}
+
+/* The terminal screenshot: a thin border so its dark edge does not melt
+   into the dark page. */
+.md-typeset img.mdl-terminal {
+  border: 1px solid #ec4a2640;
+  border-radius: 0.4rem;
+}

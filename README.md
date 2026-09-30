@@ -12,6 +12,8 @@
 
 Two Python scripts that mirror a publication catalog into a folder: `media-vtt.py` downloads the VTT subtitles of each media item, and `publications-epub.py` downloads the EPUB of each publication. Both keep a SQLite file of what they already fetched, so a rerun only gets what is new. The catalog endpoints in the source are placeholders (`https://place.holder/...`), so neither script runs until you set them.
 
+![media-vtt.py run twice against a stand-in catalog: the first run saves two subtitle files, the second skips them and downloads nothing new](docs/images/screenshots/media-vtt-run.png)
+
 ## Quick start
 
 Set the endpoints first (`grep -n place.holder src/*.py`); `publications-epub.py` also needs the catalog's `unit.db`, which the compose file mounts from `./db/unit.db`.
@@ -22,6 +24,18 @@ docker compose up --build
 ```
 
 Subtitles land in `./vtts` and EPUBs in `./epubs`, each next to its SQLite index. `LANG` in `docker-compose.yml` picks the catalog language.
+
+## Documentation
+
+The docs are at [geiserx.github.io/media-download](https://geiserx.github.io/media-download/).
+
+- [Getting started](https://geiserx.github.io/media-download/getting-started/): setting the endpoints, Docker Compose, running without Docker
+- [Usage](https://geiserx.github.io/media-download/usage/): running one script or both, reruns, reading the log and the output folder
+- [Configuration](https://geiserx.github.io/media-download/configuration/): the environment variables, the endpoints in the source, the compose file
+- [How it works](https://geiserx.github.io/media-download/how-it-works/): what each script asks the catalog for and what it records
+- [Troubleshooting](https://geiserx.github.io/media-download/troubleshooting/): the errors people hit and what to put in an issue
+- [Related projects](https://geiserx.github.io/media-download/related/): the sibling tools, including the one that saves a live web page
+- [Development](https://geiserx.github.io/media-download/development/): tests, images, docs
 
 ## Related projects
 

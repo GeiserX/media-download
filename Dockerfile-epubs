@@ -3,8 +3,10 @@ FROM python:3.11-bookworm
 
 USER root
 
+# ca-certificates is listed to upgrade it: the base image ships 20250419~deb12u1,
+# which still trusts the compromised eMudhra intermediates.
 RUN apt-get update && \
-    apt-get install -y libxml2-dev libxslt-dev build-essential libssl-dev libffi-dev && \
+    apt-get install -y ca-certificates libxml2-dev libxslt-dev build-essential libssl-dev libffi-dev && \
     apt-get clean
 
 WORKDIR /app

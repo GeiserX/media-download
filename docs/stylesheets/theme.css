@@ -4,7 +4,7 @@
  * "download" plus the down arrow in dark brown #2b0f06. The header keeps the
  * orange with dark brown text on it (4.75:1; cream on the orange is only
  * 3.5:1). The dark page uses the brown ink, so the site reads as the banner.
- * mkdocs.yml sets `primary: custom` and `accent: custom`, so Material paints
+ * zensical.toml sets `primary: custom` and `accent: custom`, so the theme paints
  * nothing until these variables exist.
  */
 :root {
@@ -49,9 +49,20 @@
  * .md-header__topic and the page title in a second one, and swaps them on
  * scroll. Styling both would change every page title too. */
 .md-header__topic:first-child .md-ellipsis {
-  color: #2b0f06;
   font-weight: 800;
   letter-spacing: -0.02em;
+}
+
+/* The brown ink only on the light scheme. Zensical's modern header takes the
+   page background, so on the dark scheme it is the same brown and the name
+   would vanish; there it keeps the default light text colour. The arrow in
+   logo.svg is filled with the same brown, so the dark scheme draws it white. */
+[data-md-color-scheme="default"] .md-header__topic:first-child .md-ellipsis {
+  color: #2b0f06;
+}
+
+[data-md-color-scheme="slate"] .md-header__button.md-logo img {
+  filter: brightness(0) invert(1);
 }
 
 /* Keep the mark and the name close, so they read as one unit. */

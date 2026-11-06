@@ -28,7 +28,7 @@ One image per script, from `Dockerfile-media` and `Dockerfile-epubs`. Keep them 
 
 ## Dependencies
 
-Dependabot opens a weekly grouped pull request for minor and patch updates of `requirements.txt` and `requirements-test.txt`, and another for `docs/requirements-docs.txt`. Major versions of those two files are left for a person to do.
+Dependabot opens a weekly grouped pull request for minor and patch updates of `requirements.txt` and `requirements-test.txt`, and a monthly one for `docs/requirements-docs.txt`. Major versions of the first two files are left for a person to do.
 
 ## Docs
 
@@ -36,10 +36,17 @@ The pages live in `docs/` and are published to [geiserx.github.io/media-download
 
 ```bash
 pip install -r docs/requirements-docs.txt
-mkdocs serve
+python -m zensical serve
 ```
 
-`mkdocs build --strict` fails on a broken link, a missing page or a page that is in no nav entry; pull requests run it as the `build (strict)` check.
+The site is built with [Zensical](https://zensical.org/) from `docs/` and `zensical.toml`. Pull requests run the same two steps as the `build (strict)` check:
+
+```bash
+python -m zensical build --clean --strict
+python -I .github/scripts/site-check.py site
+```
+
+The strict build fails on a broken link or anchor; `site-check.py` fails on what the build lets through: a page left out of the nav, a nav entry for a missing file, a missing image, a link rooted at `/`.
 
 ## Contributing
 
